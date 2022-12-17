@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"script",
+	"author":	"korintje",
+	"description":	{
+		"":	"Create a wrapper object to make selected objects highlighted-like."
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}

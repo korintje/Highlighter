@@ -1,0 +1,18 @@
+# Written in Python default config format
+# Typical highlight colors
+
+[options]
+name = Default
+description = Typical highlight colors
+default_value = light_blue
+appearance_lib_id = BA5EE55E-9982-449B-9D66-9F036540E140
+appearance_id = Prism-127
+
+[rgbs]
+light_blue = 0,255,255
+blue = 72,128,192
+light_green = 0,255,192
+green = 72,255,72
+yellow = 255,255,0
+orange = 255,133,0
+pink = 255,105,180	
