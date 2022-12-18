@@ -2,7 +2,7 @@
 # Description-Highlighter
 
 import adsk
-import os, sys, configparser, traceback
+import os, configparser, traceback
 
 # Global instances
 core = adsk.core
@@ -19,11 +19,9 @@ handlers = []
 # Global constants
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCE_DIR = os.path.join(CURRENT_DIR, 'resources')
-APPEARANCE_LIB_ID = 'BA5EE55E-9982-449B-9D66-9F036540E140'
 DEFAULT_SCALE = 0.02
 DEFAULT_OPACITY = 0.5
 TLSTYLE = core.DropDownStyles.TextListDropDownStyle
-NBFEATURE = fusion.FeatureOperations.NewBodyFeatureOperation
 NCFEATURE = fusion.FeatureOperations.NewComponentFeatureOperation
 
 # Appearance config
@@ -34,13 +32,9 @@ DEFAULT_COLOR_NAME = _options.get("default_value")
 APPEARANCE_LIB_ID = _options.get("appearance_lib_id")
 APPEARANCE_ID = _options.get("appearance_id")
 HIGHLIGHT_COLORS = {}
-try:
-    for key, value in _cfg["rgbs"].items():
-        HIGHLIGHT_COLORS[key] = [int(rgb.strip()) for rgb in value.strip().split(",")]
-    HIGHLIGHT_COLORS["custom color"] = [128, 128, 128]
-except:
-    if ui:
-        ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+for key, value in _cfg["rgbs"].items():
+    HIGHLIGHT_COLORS[key] = [int(rgb.strip()) for rgb in value.strip().split(",")]
+HIGHLIGHT_COLORS["custom color"] = [128, 128, 128]
 
 # Execute command handler
 class CommandExecuteHandler(core.CommandEventHandler):
@@ -207,7 +201,6 @@ class Highlight:
 
             # Set appearance
             highlight_color_name = f'highlight_{self.color_name}'
-            # color = [int(rgb.strip()) for rgb in HIGHLIGHT_COLORS[self.color_name].strip().split(",")]
             color = HIGHLIGHT_COLORS[self.color_name]
             try:
                 highlightColor = favoriteAppearances.itemByName(highlight_color_name)
